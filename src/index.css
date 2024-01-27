@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html,body{
+    padding: 0px !important;
+    margin: 0px !important;
+    /* background-color: rgb(215, 215, 215); */
+    background-color: whitesmoke;
+    overflow-y: scroll;
+    
+}
+
+/* For Firefox */
+body {
+    scrollbar-width: 0px !important;
+    scrollbar-color: transparent transparent !important;
+    /* thumb color, track color */
+}
+
+/* For Webkit (Chrome, Safari) - Note: This may not work in all versions of Chrome or Safari */
+body::-webkit-scrollbar {
+    width: 0px !important;
+    /* adjust the width as needed */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* thumb color */
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* track color */
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
