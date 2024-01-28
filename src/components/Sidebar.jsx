@@ -7,7 +7,7 @@ function Sidebar({ sideBarCss,sideBarCssContent, title, Content }) {
         <h1 className="text-center font-themeFont font-bold underline">
           {title}
         </h1>
-        <div>{Content}</div>
+        <div className="h-100 w-full shadow-lg">{Content}</div>
       </div>
     </div>
   );
