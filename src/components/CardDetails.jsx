@@ -1,9 +1,8 @@
 import React from 'react'
 import { FaWhatsapp } from "react-icons/fa6";
 
-function CardDetails({ visiableCard, setvisiableCard }) {
-
-
+function CardDetails({ visiableCard, setvisiableCard, cardDetail }) {
+  
   return (
     <div className="fixed inset-0 shadow-lg bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
       <div className="relative bg-white h-4/5 w-5/6 rounded-lg shadow-lg p-2 overflow-y-scroll">
@@ -44,7 +43,7 @@ function CardDetails({ visiableCard, setvisiableCard }) {
             {/* Product Name  */}
             <div className="text-center">
               <h1 className="text-center text-2xl font-themeFont font-bold">
-                Wheat
+                {cardDetail.productName}
               </h1>
             </div>
             {/* Product Model Name */}
@@ -52,7 +51,7 @@ function CardDetails({ visiableCard, setvisiableCard }) {
               <span className="font-themeFontRegular">model Name :</span>
               <span className="text-center">
                 <h2 className="text-center text-xl font-themeFont font-bold text-gray-800">
-                  Wheat 303
+                  {cardDetail.prod}
                 </h2>
               </span>
             </div>

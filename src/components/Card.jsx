@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
-function Card() {
-  const [Verified, setVerified] = useState(true);
+function Card({product}) {
+  const [Verified, setVerified] = useState(false);
+  const productName = product.productName.split(" ").slice(0, 6).join(" ");
+
+  useEffect(() => {
+    if (product.verified) {
+      setVerified(true);
+    }
+  })
+
   return (
     <div className="bg-white border border-1 rounded-lg  h-[250px] w-[200px] p-2 shadow-md">
       <div className="h-[80%] relative flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img
           className="object-cover h-full w-full bg-white rounded-lg transition  duration-500 ease-in-out transform hover:scale-105 hover:cursor-pointer"
-          src="https://images.unsplash.com/photo-1511735643442-503bb3bd348a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNyb3BzfGVufDB8fDB8fHww"
+          src={`${product.imageUrl[0]}`}
           alt=""
         />
         {Verified ? (
@@ -37,7 +45,7 @@ function Card() {
       </div>
       <div className="my-2">
         <div className="grid grid-cols-2">
-          <div className=" font-themeFontRegular">Channa</div>
+          <div className=" font-themeFontRegular">{(product.productName).slice(0,6)}</div>
           <div className="text-end flex justify-end items-center">
             <span className="text-sm">
               <svg

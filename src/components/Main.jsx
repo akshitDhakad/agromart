@@ -1,19 +1,43 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Card from './card';
 import CardDetails from './CardDetails';
 import Sidebar from "./Sidebar";
-
+import Preloader from "./Preloader";
+// Redux code 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../redux/productAction";
 
 
 function Main() {
   const [visiableCard, setvisiableCard] = useState(false);
   const [visiableFilter, setvisiableFilter] = useState(false);
+  const [cardDetail ,setCardDetail] = useState({});
+
+  // fetch data from axios
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.data);
+  const isFetching = useSelector((state) => state.product.isFetching);
+  const error = useSelector((state) => state.product.error);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (isFetching) {
+    return (
+      <div className="h-full w-full">
+        <Preloader />
+      </div>
+    );
+  }
+
+  // content data
   const sideBarCss =
     "fixed inset-0 shadow-lg bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center";
   const sideBarCssContent =
     "relative bg-white h-3/5 w-2/6 rounded-lg shadow-lg px-2 py-5 overflow-y-auto border border-gray-300";
 
-  const Content =()=>{
+  const Content = () => {
     return (
       <>
         <form action="">
@@ -122,7 +146,7 @@ function Main() {
         </button>
       </>
     );
-  }
+  };
 
   return (
     <div className="relative w-full min-h-screen  gap-4 my-2 shadow">
@@ -151,20 +175,24 @@ function Main() {
         </button>
       </div>
       <div className="col-span-3 grid grid-cols-5 gap-x-5  gap-y-10 bg-white p-2 ">
-        <div onClick={() => setvisiableCard(!visiableCard)}>
-          <Card />
-        </div>
+        {products.map((product) => (
+          <div key={product._id} onClick={() => {setCardDetail(product), setvisiableCard(!visiableCard);}}>
+            <Card product={product} />
+          </div>
+        ))}
       </div>
       {visiableCard ? (
         <div className="absolute top-0">
           {
             <CardDetails
+              cardDetail={cardDetail}
               setvisiableCard={setvisiableCard}
               visiableCard={visiableCard}
             />
           }
         </div>
       ) : null}
+
       {visiableFilter ? (
         <div className="absolute top-0">
           <Sidebar

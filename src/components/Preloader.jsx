@@ -3,8 +3,8 @@ import "./style.css"
 
 function Preloader() {
   return (
-    <div className=" h-screen flex justify-center items-center backdrop-blur-sm relative">
-      <div className="flex flex-col gap-y-3 justify-center items-center bg-white h-4/6 w-3/12">
+    <div className="fixed inset-0 shadow-lg bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
+      <div className="relative bg-white h-3/5 w-2/6 rounded-lg shadow-lg px-2 py-5 overflow-y-auto border border-gray-300">
         <div className="flex items-center  justify-center ">
           <div className="relative">
             <div className="animate-spin rounded-full h-48 w-48 border-b-4 border-orange-500  "></div>
